@@ -23,8 +23,8 @@ type BNode struct {
 	Thr     float64 // threshold
 	Weights []float64
 
-	activ   float64 // activation value
-	error   float64
+	activ float64 // activation value
+	error float64
 }
 
 // NewBNode creates new backpropagation network node.
@@ -43,7 +43,7 @@ type Backprop struct {
 
 	lhRate float64 // learning rate of the hidden layer
 	loRate float64 // learning rate of the output layer
-	
+
 	netInput   []float64
 	desiredOut []float64
 }
@@ -98,6 +98,9 @@ func (n *Backprop) Train(iterations int, data []*TrainingData) {
 	outputLen := len(n.Output)
 
 	for i := 0; i < iterations; i++ {
+
+		fmt.Println(i, " of ", iterations)
+
 		for _, tr := range data {
 			if inputLen != len(tr.Input) {
 				panic(fmt.Sprintf("expected training data input length %d got %d", inputLen, len(tr.Input)))
